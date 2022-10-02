@@ -18,4 +18,7 @@ jobs:
         uses: helm/kind-action@v1.4.0
 
       - name: remote repo add
-        run: helm version
+        run: helm repo add sd https://sudipto-003.github.io/nginx-chart
+
+      - name: render 
+        run: helm install -f ./test-values.yaml nginx-demo sd/hello-nginx --dry-run --debug
