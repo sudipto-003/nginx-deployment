@@ -1,0 +1,21 @@
+name: Test remote chart
+on: push
+jobs:
+  chart-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: setup helm
+        uses: azure/setup-helm@v3
+        with:
+          version: v3.10.0
+
+      - name: setup kind
+        uses: helm/kind-action@v1.4.0
+
+      - name: remote repo add
+        run: helm version
